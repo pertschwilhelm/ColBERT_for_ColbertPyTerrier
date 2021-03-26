@@ -44,12 +44,12 @@ class ModelInference():
 
     def docFromText(self, docs, bsize=None, keep_dims=True, to_cpu=False, with_ids=False):
         if bsize:
-            print("docFromText on %d documents" % len(docs))
+            #print("docFromText on %d documents" % len(docs))
             batch_ids, reverse_indices = self.doc_tokenizer.tensorize(docs, bsize=bsize)
             # batch_ids contain batches; each batch is a 2-tuple, of which the left is
             # the ids of each document, and the right is the masks of each document
-            print("tokens doc 0: %d" % len(batch_ids[0][0][0]))
-            print("total tokens %d" % sum([len(d) for ids, mark in batch_ids for d in ids]))
+            #print("tokens doc 0: %d" % len(batch_ids[0][0][0]))
+            #print("total tokens %d" % sum([len(d) for ids, mark in batch_ids for d in ids]))
             #batch_ids = [ input_ids for input_ids in batches]
 
             #print("batch_ids len=%d" % len(batch_ids))
@@ -67,7 +67,7 @@ class ModelInference():
                 return D[reverse_indices]
             #print(batches[0][0])
             D = [d for batch in batches for d in batch]
-            print("lenD = %d " % len(D))
+            #print("lenD = %d " % len(D))
             if with_ids:
                 #the masking code assumes that args.mask_punctuation is false.
                 assert len(self.colbert.skiplist) == 0
@@ -93,7 +93,7 @@ class ModelInference():
                                 print(emb)
                                 assert False
 
-                print("len D_i = %d" % len(D_i))
+                #print("len D_i = %d" % len(D_i))
                 left = [D[idx] for idx in reverse_indices.tolist()]
                 right = [D_i[idx] for idx in reverse_indices.tolist()]
                 return left, right
