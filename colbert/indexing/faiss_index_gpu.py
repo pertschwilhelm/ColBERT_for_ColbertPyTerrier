@@ -133,5 +133,3 @@ class FaissIndexGPU():
 
         if self.ngpu > 1:
             self.gpu_index.sync_with_shard_indexes()
-
-        assert index.ntotal == offset+nb, (index.ntotal, offset+nb, offset, nb)
