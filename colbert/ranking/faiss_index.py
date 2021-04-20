@@ -108,7 +108,8 @@ class FaissIndex():
 
         print_message("#> Removing duplicates (in parallel if large enough)..", condition=verbose)
 
-        if len(all_pids) > 5000:
+        #if len(all_pids) > 5000
+        if False:
             all_pids = list(self.parallel_pool.map(uniq, all_pids))
         else:
             all_pids = list(map(uniq, all_pids))
