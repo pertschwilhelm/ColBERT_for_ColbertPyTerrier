@@ -1,8 +1,8 @@
 import torch
 from contextlib import contextmanager
 
-PyTorch_over_1_6 = float('.'.join(torch.__version__.split('.')[0:2])) >= 1.6
-
+from packaging.version import Version
+PyTorch_over_1_6 = Version(torch.__version__) >= Version('1.6.0')
 
 class MixedPrecisionManager():
     def __init__(self, activated):
