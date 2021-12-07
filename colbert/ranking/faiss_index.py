@@ -12,7 +12,7 @@ from colbert.indexing.loaders import load_doclens
 
 
 class FaissIndex():
-    def __init__(self, index_path, faiss_index_path, nprobe, part_range=None):
+    def __init__(self, index_path, faiss_index_path, nprobe, part_range=None, mmap=False):
         print_message("#> Loading the FAISS index from", faiss_index_path, "..")
 
         faiss_part_range = os.path.basename(faiss_index_path).split('.')[-2].split('-')
@@ -27,7 +27,10 @@ class FaissIndex():
         self.part_range = part_range
         self.faiss_part_range = faiss_part_range
 
-        self.faiss_index = faiss.read_index(faiss_index_path)
+        faiss_args=[]
+        if mmap:
+            faiss_args.append(faiss.IO_FLAG_MMAP)
+        self.faiss_index = faiss.read_index(faiss_index_path, *faiss_args)
         self.faiss_index.nprobe = nprobe
 
         print_message("#> Building the emb2pid mapping..")
