@@ -62,7 +62,7 @@ class FaissIndex():
 
         print_message("len(self.emb2pid) =", len(self.emb2pid))
 
-        self.parallel_pool = Pool(16)
+        #self.parallel_pool = Pool(16)
 
     def retrieve(self, faiss_depth, Q, verbose=False):
         embedding_ids = self.queries_to_embedding_ids(faiss_depth, Q, verbose=verbose)
