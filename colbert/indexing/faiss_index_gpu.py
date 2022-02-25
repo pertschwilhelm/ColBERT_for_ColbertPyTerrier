@@ -106,7 +106,7 @@ class FaissIndexGPU():
             i1 = min(i0 + self.add_batch_size, nb)
             xs = data[i0:i1]
 
-            self.gpu_index.add_with_ids(xs, np.arange(offset+i0, offset+i1))
+            self.gpu_index.add_with_ids(xs, np.arange(offset+i0, offset+i1, dtype=np.int64))
 
             if self.max_add > 0 and self.gpu_index.ntotal > self.max_add:
                 self._flush_to_cpu(index, nb, offset)
