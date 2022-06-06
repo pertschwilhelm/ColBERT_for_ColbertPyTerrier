@@ -1,5 +1,6 @@
 import os
 import random
+from comet_ml import Experiment
 import torch
 import copy
 
@@ -25,7 +26,8 @@ def main():
     assert args.doc_maxlen <= 512
 
     args.lazy = args.collection is not None
-
+    experiment = Experiment(project_name="ColBERT_Training")
+    experiment.log_parameters(args)
     with Run.context(consider_failed_if_interrupted=False):
         train(args)
 

@@ -184,7 +184,7 @@ def load_colbert(args, do_print=True):
         if 'arguments' in checkpoint and hasattr(args, k):
             if k in checkpoint['arguments'] and checkpoint['arguments'][k] != getattr(args, k):
                 a, b = checkpoint['arguments'][k], getattr(args, k)
-                Run.warn(f"Got checkpoint['arguments']['{k}'] != args.{k} (i.e., {a} != {b})")
+                #Run.warn(f"Got checkpoint['arguments']['{k}'] != args.{k} (i.e., {a} != {b})")
 
     if 'arguments' in checkpoint:
         if args.rank < 1:

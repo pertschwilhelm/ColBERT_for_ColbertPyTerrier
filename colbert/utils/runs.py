@@ -38,13 +38,10 @@ class _RunManager():
             if os.path.exists(self.path):
                 print('\n\n')
                 print_message("It seems that ", self.path, " already exists.")
-                print_message("Do you want to overwrite it? \t yes/no \n")
+                print_message("Directory is going to be overwritten.")
 
                 # TODO: This should timeout and exit (i.e., fail) given no response for 60 seconds.
 
-                response = input()
-                if response.strip() != 'yes':
-                    assert not os.path.exists(self.path), self.path
             else:
                 create_directory(self.path)
 
