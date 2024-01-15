@@ -176,10 +176,10 @@ def load_collection(collection_path):
 
 def load_colbert(args, do_print=True):
     colbert, checkpoint = load_model(args, do_print)
-
+    print(checkpoint.keys())
     # TODO: If the parameters below were not specified on the command line, their *checkpoint* values should be used.
     # I.e., not their purely (i.e., training) default values.
-
+    """
     for k in ['query_maxlen', 'doc_maxlen', 'dim', 'similarity', 'amp']:
         if 'arguments' in checkpoint and hasattr(args, k):
             if k in checkpoint['arguments'] and checkpoint['arguments'][k] != getattr(args, k):
@@ -192,5 +192,5 @@ def load_colbert(args, do_print=True):
 
     if do_print:
         print('\n')
-
+    """
     return colbert, checkpoint
